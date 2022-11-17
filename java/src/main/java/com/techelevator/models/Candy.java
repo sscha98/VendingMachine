@@ -31,6 +31,11 @@ public class Candy implements Purchasable{
     }
 
     @Override
+    public void purchased() {
+    numberInStock-=1;
+    }
+
+    @Override
     public String getMessage() {
         return "Sugar, Sugar, so Sweet!";
     }

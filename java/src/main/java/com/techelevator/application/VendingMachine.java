@@ -13,6 +13,7 @@ public class VendingMachine
 {
     public void run()
     {
+        VendingLog logger = new VendingLog();
         while(true)
         {
             UserOutput.displayHomeScreen();
@@ -52,17 +53,49 @@ public class VendingMachine
                 // make a purchase
                 Customer customer = new Customer();
                 String purchaseMenuChoice = UserInput.getPurchaseMenuOption();
-                do {
+                while (true) {
                     if (purchaseMenuChoice.equals("feed")) {
-                        String moneyFed = UserInput.getFeedingMoney();
-                        System.out.println("Current Money Provided: " + moneyFed);
+
+                        BigDecimal moneyFed = UserInput.getFeedingMoney();
+                        customer.addMoney(moneyFed);
+                        System.out.println("Current Money Provided: " + customer.getMoneyProvided());
+                        purchaseMenuChoice = UserInput.getPurchaseMenuOption();
+                        logger.log("MONEY FED", moneyFed, customer.getMoneyProvided());
 
                     } else if (purchaseMenuChoice.equals("select")) {
+                        for (Map.Entry<String, Purchasable> entry : inventory.entrySet()){
+                            System.out.println(entry.getKey() + " " + entry.getValue().getName() + " " +
+                                    entry.getValue().getPrice() + " " + "Number in stock: " + entry.getValue().getNumberInStock());
+                        }
+                        String itemSelected = UserInput.getSelection();
+
+                        if (inventory.containsKey(itemSelected)&& inventory.get(itemSelected).getNumberInStock()>0){
+                            inventory.get(itemSelected).purchased();
+                            customer.addItem(inventory.get(itemSelected));
+                            System.out.println("\nName: " + inventory.get(itemSelected).getName() + ", Price: " +
+                                    inventory.get(itemSelected).getPrice() + " Money Remaining: "+ customer.getRemainingMoney()+
+                                    "\n " + inventory.get(itemSelected).getMessage()+ "\n");
+                            purchaseMenuChoice = UserInput.getPurchaseMenuOption();
+
+
+
+                        } else if (inventory.containsKey(itemSelected)&& inventory.get(itemSelected).getNumberInStock()==0){
+                            System.out.println("NO LONGER AVAILABLE");
+                            purchaseMenuChoice = UserInput.getPurchaseMenuOption();
+                        } else {
+                            System.out.println("Invalid Item");
+                            purchaseMenuChoice = UserInput.getPurchaseMenuOption();
+                        }
+
+
+
 
                     } else if (purchaseMenuChoice.equals("finish")) {
+                        System.out.println(customer.getChange());
+                        break;
                     }
                 }
-                    while (!purchaseMenuChoice.equals("finish"));
+
 
                 }
 

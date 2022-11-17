@@ -31,6 +31,11 @@ public class Munchy implements Purchasable{
     }
 
     @Override
+    public void purchased() {
+        numberInStock-=1;
+    }
+
+    @Override
     public String getMessage() {
         return "Munchy, Munchy, so Good!";
     }

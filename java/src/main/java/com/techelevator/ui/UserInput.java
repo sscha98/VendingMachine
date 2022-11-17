@@ -1,6 +1,7 @@
 package com.techelevator.ui;
 
 import java.math.BigDecimal;
+import java.text.Bidi;
 import java.util.Scanner;
 
 /**
@@ -72,10 +73,17 @@ public class UserInput
         }
     }
 
-    public static String getFeedingMoney(){
+    public static BigDecimal getFeedingMoney(){
         System.out.print("Amount of Money you want to Feed (Whole bills ranging from  $1, $5, $10, $20. No change Accepted)  ");
-        String selectedOption = scanner.nextLine();
-        return selectedOption;
+        int selectedOption = Integer.parseInt(scanner.nextLine());
 
+        return BigDecimal.valueOf(selectedOption);
+
+    }
+
+    public static String getSelection(){
+        System.out.print("Please type in your selection:");
+        String selectedOption  = scanner.nextLine();
+        return selectedOption;
     }
 }

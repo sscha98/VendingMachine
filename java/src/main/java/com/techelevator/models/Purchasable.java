@@ -8,4 +8,5 @@ public interface Purchasable {
     String getName();
     BigDecimal getPrice();
     int getNumberInStock();
+    void purchased();
 }

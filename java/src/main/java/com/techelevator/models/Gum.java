@@ -32,6 +32,11 @@ public class Gum implements Purchasable{
     }
 
     @Override
+    public void purchased() {
+        numberInStock-=1;
+    }
+
+    @Override
     public String getMessage() {
         return "Chewy, Chewy, Lots O Bubbles!";
     }
