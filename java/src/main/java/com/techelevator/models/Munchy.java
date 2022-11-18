@@ -6,8 +6,7 @@ public class Munchy implements Purchasable{
     private String name;
     private String slot;
     private BigDecimal price;
-    private int numberInStock = 6;
-
+    private int numberInStock=6;
     public Munchy(String slot, String name, BigDecimal price){
         this.name = name;
         this.slot = slot;
