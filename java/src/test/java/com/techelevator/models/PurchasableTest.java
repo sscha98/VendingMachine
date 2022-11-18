@@ -44,18 +44,32 @@ public class PurchasableTest extends TestCase {
 
     @Test
     public void testGetPrice() {
-        Assert.assertEquals(BigDecimal.valueOf(2.25), candy.getPrice());
-        //Assert.assertEquals(BigDecimal.valueOf(2.95), munchy.getPrice());
-        Assert.assertEquals(BigDecimal.valueOf(3.25), drink.getPrice());
-        //Assert.assertEquals(BigDecimal.valueOf(2.35), gum.getPrice());
+        Assert.assertEquals(new BigDecimal(2.25), candy.getPrice());
+        Assert.assertEquals(new BigDecimal(2.95), munchy.getPrice());
+        Assert.assertEquals(new BigDecimal(3.25), drink.getPrice());
+        Assert.assertEquals(new BigDecimal(2.35), gum.getPrice());
     }
 
     @Test
     public void testGetNumberInStock() {
-
+        int expected = 6;
+        Assert.assertEquals(expected, candy.getNumberInStock());
+        Assert.assertEquals(expected, munchy.getNumberInStock());
+        Assert.assertEquals(expected, drink.getNumberInStock());
+        Assert.assertEquals(expected, gum.getNumberInStock());
     }
 
     @Test
     public void testPurchased() {
+        int expected = 5;
+        candy.purchased();
+        munchy.purchased();
+        drink.purchased();
+        gum.purchased();
+        Assert.assertEquals(expected, candy.getNumberInStock());
+        Assert.assertEquals(expected, munchy.getNumberInStock());
+        Assert.assertEquals(expected, drink.getNumberInStock());
+        Assert.assertEquals(expected, gum.getNumberInStock());
+
     }
 }
