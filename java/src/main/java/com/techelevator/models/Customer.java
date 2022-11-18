@@ -13,10 +13,6 @@ public class Customer {
     private BigDecimal balance=new BigDecimal(0);
     private List<Purchasable> items = new ArrayList<>();
     private BigDecimal change = new BigDecimal(0);
-//    private BigDecimal remainingMoney;
-//    private BigDecimal itemPrice;
-//    private BigDecimal currentBalance;
-//    private int numberOfItemsPurchased; //utilize to calc bogodo discount
 
 
     //empty constructor
@@ -38,25 +34,6 @@ public class Customer {
         return balance;
     }
 
-    //public int getNumberOfItemsPurchased() {return numberOfItemsPurchased;}
-
-//    public BigDecimal getTotalPrice() {
-//        BigDecimal sum = BigDecimal.valueOf(0);
-//
-//        for (Purchasable price : items) {
-//            sum = sum.add(price.getPrice());
-//        }
-//        return sum;
-//    }
-
-//    public BigDecimal getRemainingMoney() {
-//        BigDecimal discount = new BigDecimal(0);
-//        if (items.size() % 2 == 0) {
-//            discount = BigDecimal.valueOf(1);
-//        }
-//        balance = (balance.subtract(itemPrice)).add(discount);
-//        return balance;
-//    }
     //returns the string of the dollar and coin amount of change
     //should only be run when the customer is finished
     public String getChangeString() {
