@@ -27,6 +27,8 @@ public class UserOutput
         System.out.println("                      Home");
         System.out.println("***************************************************");
         System.out.println();
+        System.out.println("Thanksgiving Sale! Every 2nd item purchased is $1 off!");
+        System.out.println();
     }
 
 }

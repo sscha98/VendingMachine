@@ -1,5 +1,7 @@
 package com.techelevator.ui;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.text.Bidi;
 import java.util.Scanner;
@@ -12,6 +14,12 @@ import java.util.Scanner;
 public class UserInput{
 
     private static Scanner scanner = new Scanner(System.in);
+
+    public static String getInventoryFile() {
+        System.out.print("Please input an inventory file: ");
+        String inventoryFile = scanner.nextLine();
+        return inventoryFile;
+    }
 
     public static String getHomeScreenOption(){
         System.out.println("What would you like to do?");

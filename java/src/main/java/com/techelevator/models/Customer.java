@@ -1,12 +1,14 @@
 package com.techelevator.models;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Customer {
+    private BigDecimal amountSaved = new BigDecimal(0);
     private BigDecimal balance=new BigDecimal(0);
 
     private List<Purchasable> items = new ArrayList<>();
@@ -87,7 +89,8 @@ public class Customer {
         zeroBalance();
 
         return "Your change is: " + dollars + " dollars, " + quarters + " quarters, " + dimes + " dimes, and " +
-                nickels + " nickels";
+                nickels + " nickels. You saved: " + NumberFormat.getCurrencyInstance().format(amountSaved);
+
     }
 
         public void addItem(Purchasable item){
@@ -96,6 +99,7 @@ public class Customer {
             BigDecimal discount = new BigDecimal(0);
             if (items.size() % 2 == 0) {
                 discount = BigDecimal.valueOf(1);
+                amountSaved = amountSaved.add(BigDecimal.valueOf(1));
             }
             balance = (balance.subtract(item.getPrice())).add(discount);
 
