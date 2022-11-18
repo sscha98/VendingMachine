@@ -17,13 +17,12 @@ public class CustomerTest {
     private Customer customer2;
     private Purchasable candy = new Candy("C1", "Caramel Bar", new BigDecimal(2.25));
     private Purchasable munchy = new Munchy("C3", "Moonpie", new BigDecimal(2.95));
-    private Purchasable drink = new Drink("B2", "Papsi", new BigDecimal(3.25));
-    private Purchasable gum = new Gum("D3", "Singlemint", new BigDecimal(2.35));
+    private Purchasable drink = new Drink("B2", "Papsi", new BigDecimal(3.45));
+    private Purchasable gum = new Gum("D3", "Singlemint Gum", new BigDecimal(2.35));
 
     @Before
     public void setup(){
         customer = new Customer();
-        customer2 = new Customer();
     }
 
     @Test
@@ -53,6 +52,7 @@ public class CustomerTest {
         Assert.assertEquals(new BigDecimal(105), customer.getBalance());
     }
 
+
     @Test
     public void getBalance() {
         customer.addMoney(new BigDecimal(100));
@@ -68,29 +68,56 @@ public class CustomerTest {
         Assert.assertEquals(expected, customer.getChangeString());
     }
 
-   /* @Test
-    public void getChangeStringDiscount(){
-        customer2.addMoney(new BigDecimal(100));
-        customer2.addItem(munchy);
-        customer2.getBalance();
-        customer2.addItem(candy);
-        String expectedWithDiscount = "Your change is: 95 dollars, 3 quarters, 0 dimes, and 1 nickels. You saved: $1.00";
-        Assert.assertEquals(expectedWithDiscount, customer2.getChangeString());
+
+
+   /*@Test
+    public void getChangeStringDiscountTwoItems(){
+        customer.addMoney(new BigDecimal(20));
+        customer.addItem(drink);
+        customer.addItem(candy);
+        String expectedWithDiscount = "Your change is: 15 dollars, 2 quarters, 0 dimes, and 0 nickels. You saved: $1.00";
+        Assert.assertEquals(expectedWithDiscount, customer.getChangeString());
     }*/
+
+    /*@Test
+    public void getChangeStringDiscountFourItems(){
+        customer.addMoney(new BigDecimal(40));
+        customer.addItem(drink);
+        customer.addItem(drink);
+        customer.addItem(drink);
+        customer.addItem(drink);
+        String expectedWithDiscount = "Your change is: 29 dollars, 0 quarters, 0 dimes, and 0 nickels. You saved: $2.00";
+        Assert.assertEquals(expectedWithDiscount, customer.getChangeString());
+    }*/
+
+    /*@Test
+    public void getChangeStringDiscountSixItems(){
+        customer.addMoney(new BigDecimal(40));
+        customer.addItem(drink);
+        customer.addItem(drink);
+        customer.addItem(drink);
+        customer.addItem(candy);
+        customer.addItem(candy);
+        customer.addItem(candy);
+        String expectedWithDiscount = "Your change is: 25 dollars, 3 quarters, 1 dimes, and 1 nickels. You saved: $3.00";
+        Assert.assertEquals(expectedWithDiscount, customer.getChangeString());
+    }*/
+
+
 
     @Test
     public void addItem() {
 
         //Rounding errors in tests
         customer.addMoney(new BigDecimal(10));
-        customer.addItem(drink);//3.25
+        customer.addItem(drink);//3.45
         //adding item subtracts item price from balance
         // every second item invokes discount
-        double expected =6.75;
+        double expected =6.55;
         Assert.assertEquals(expected, customer.getBalance().doubleValue(), .000009);
 
         customer.addItem(gum);
-        double expectedWithDiscount = 5.40;
+        double expectedWithDiscount = 5.20;
         Assert.assertEquals(expectedWithDiscount, customer.getBalance().doubleValue(), .000009);
     }
 }
