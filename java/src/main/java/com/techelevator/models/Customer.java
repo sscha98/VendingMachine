@@ -48,15 +48,16 @@ public class Customer {
 
         BigDecimal moneyProvidedCents = moneyProvided.multiply(new BigDecimal(100));
         int cents = moneyProvidedCents.intValue()- 100*dollars;
-        int quarterVal = 25;
-        int dimeVal = 10;
-        int nickelVal = 5;
+        final int QUARTER_VAL = 25;
+        final int DIME_VAL = 10;
+        final int NICKEL_VAL = 5;
 
         int quarters = 0;
         int dimes = 0;
         int nickels = 0;
 
         while(cents>0){
+<<<<<<< HEAD
             if (cents/quarterVal>0){
                 quarters = cents/quarterVal;
                 cents = cents -(quarters*quarters);
@@ -68,6 +69,17 @@ public class Customer {
             else if (cents/nickelVal>0) {
                 nickels = cents / nickelVal;
                 cents = cents - (nickels * nickelVal);
+=======
+            if (cents/ QUARTER_VAL >0){
+                quarters = cents/ QUARTER_VAL;
+                cents = cents -(quarters* QUARTER_VAL);
+            } else if (cents/ DIME_VAL >0){
+                dimes = cents/ DIME_VAL;
+                cents = cents - (dimes* DIME_VAL);
+            }else if (cents/ NICKEL_VAL >0) {
+                nickels = cents / NICKEL_VAL;
+                cents = cents - (nickels * NICKEL_VAL);
+>>>>>>> 4ddc03d2b396a6ea9e541bbf2b0d1e494fedc71a
             }
         }
 
@@ -79,4 +91,5 @@ public class Customer {
         items.add(item);
         itemPrice = item.getPrice();
     }
+
 }

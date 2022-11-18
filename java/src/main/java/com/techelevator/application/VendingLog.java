@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,10 +19,9 @@ public class VendingLog {
 
         try (PrintWriter append = new PrintWriter(new FileWriter(vendingLog, true))) {
            //printf("%-22s %-18d %s%f")
-            int decimalPlaces = 2;
-            available.setScale(decimalPlaces, RoundingMode.CEILING);
-            remaining.setScale(decimalPlaces, RoundingMode.CEILING);
-            append.printf("%-22s %-18s %-18f %f\n",timeString(), action, available, remaining);
+            append.printf("%-15s %-15s %-15s %s\n",timeString(), action,
+                    NumberFormat.getCurrencyInstance().format(available),
+                    NumberFormat.getCurrencyInstance().format(remaining));
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
