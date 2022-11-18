@@ -11,16 +11,14 @@ import java.util.*;
 
 public class VendingMachine 
 {
-    public void run()
-    {
+    public void run(){
+
         VendingLog logger = new VendingLog();
-        while(true)
-        {
+        while(true) {
             UserOutput.displayHomeScreen();
             String choice = UserInput.getHomeScreenOption();
             File menuFileInput = new File("catering.csv");
 
-            //List<Purchasable> inventory = new ArrayList<>();
             Map<String, Purchasable> inventory = new HashMap<>();
 
             try(Scanner menu = new Scanner(menuFileInput)){
@@ -30,16 +28,19 @@ public class VendingMachine
                     String name = item[0];
                     if (item[3].equals("Munchy")) {
                         inventory.put(name, new Munchy(item[0], item[1], new BigDecimal(item[2])));
-                    } else if (item[3].equals("Candy")) {
+                    }
+                    else if (item[3].equals("Candy")) {
                         inventory.put(name, new Candy(item[0], item[1], new BigDecimal(item[2])));
-                    } else if (item[3].equals("Drink")) {
+                    }
+                    else if (item[3].equals("Drink")) {
                         inventory.put(name, new Drink(item[0], item[1], new BigDecimal(item[2])));
-                    } else if (item[3].equals("Gum")){
+                    }
+                    else if (item[3].equals("Gum")){
                         inventory.put(name, new Gum(item[0], item[1], new BigDecimal(item[2])));
                     }
                 }
             } catch (FileNotFoundException e) {
-                System.out.println("File not found");
+                System.out.println("That File was not found. Please enter a valid inventory File.");
             }
 
 
@@ -49,6 +50,7 @@ public class VendingMachine
                     System.out.println(entry.getKey() + " " + entry.getValue().getName() + " " + entry.getValue().getPrice() + " " + "Number in stock: " + entry.getValue().getNumberInStock());
                 }
             }
+
             else if(choice.equals("purchase")) {
                 // make a purchase
                 Customer customer = new Customer();
@@ -58,11 +60,11 @@ public class VendingMachine
 
                         BigDecimal moneyFed = UserInput.getFeedingMoney();
                         customer.addMoney(moneyFed);
-                        System.out.println("Current Money Provided: " + customer.getMoneyProvided());
+                        System.out.println("\nCurrent Money Provided: $" + customer.getMoneyProvided() + "\n"); //added spacing
                         purchaseMenuChoice = UserInput.getPurchaseMenuOption();
-                        logger.log("MONEY FED", moneyFed, customer.getMoneyProvided());
-
-                    } else if (purchaseMenuChoice.equals("select")) {
+                        logger.log("MONEY FED:", moneyFed, customer.getMoneyProvided()); //added : after MONEY FED, to match readMe
+                    }
+                    else if (purchaseMenuChoice.equals("select")) {
                         for (Map.Entry<String, Purchasable> entry : inventory.entrySet()){
                             System.out.println(entry.getKey() + " " + entry.getValue().getName() + " " +
                                     entry.getValue().getPrice() + " " + "Number in stock: " + entry.getValue().getNumberInStock());
@@ -72,39 +74,32 @@ public class VendingMachine
                         if (inventory.containsKey(itemSelected)&& inventory.get(itemSelected).getNumberInStock()>0){
                             inventory.get(itemSelected).purchased();
                             customer.addItem(inventory.get(itemSelected));
-                            System.out.println("\nName: " + inventory.get(itemSelected).getName() + ", Price: " +
-                                    inventory.get(itemSelected).getPrice() + " Money Remaining: "+ customer.getRemainingMoney()+
+                            System.out.println("\nName: " + inventory.get(itemSelected).getName() + ", Price: $" +
+                                    inventory.get(itemSelected).getPrice() + " Money Remaining: $"+ customer.getRemainingMoney()+
                                     "\n " + inventory.get(itemSelected).getMessage()+ "\n");
                             purchaseMenuChoice = UserInput.getPurchaseMenuOption();
 
 
-
-                        } else if (inventory.containsKey(itemSelected)&& inventory.get(itemSelected).getNumberInStock()==0){
+                        }
+                        else if (inventory.containsKey(itemSelected)&& inventory.get(itemSelected).getNumberInStock()==0){
                             System.out.println("NO LONGER AVAILABLE");
                             purchaseMenuChoice = UserInput.getPurchaseMenuOption();
-                        } else {
+                        }
+                        else {
                             System.out.println("Invalid Item");
                             purchaseMenuChoice = UserInput.getPurchaseMenuOption();
                         }
-
-
-
-
-                    } else if (purchaseMenuChoice.equals("finish")) {
+                    }
+                    else if (purchaseMenuChoice.equals("finish")) {
                         System.out.println(customer.getChange());
                         break;
                     }
                 }
-
-
-                }
-
-            else if(choice.equals("exit"))
-            {
-                // good bye
+            }
+            else if(choice.equals("exit")) {
+                // goodbye
                 break;
             }
         }
     }
-    
 }

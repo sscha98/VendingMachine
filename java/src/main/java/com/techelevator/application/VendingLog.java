@@ -27,14 +27,8 @@ public class VendingLog {
         }
     }
     public static String timeString(){
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy h:mm:ss a");
         //LocalDateTime time = LocalDateTime.parse(now,formatter);
         return LocalDateTime.now().format(formatter);
     }
-
-
-
-
-
 }

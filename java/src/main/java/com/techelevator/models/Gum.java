@@ -26,7 +26,6 @@ public class Gum implements Purchasable{
         return price;
     }
 
-
     public int getNumberInStock() {
         return numberInStock;
     }

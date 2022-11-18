@@ -34,6 +34,7 @@ public class Drink implements Purchasable{
     public void purchased() {
         numberInStock-=1;
     }
+
     @Override
     public String getMessage() {
         return "Drinky, Drinky, Slurp Slurp!";

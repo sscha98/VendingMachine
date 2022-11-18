@@ -13,20 +13,13 @@ public class Customer {
     private BigDecimal remainingMoney;
     private BigDecimal itemPrice;
 
-    public Customer() {
-    }
+    public Customer(){}
 
-    public void addMoney(BigDecimal feedMoney){
-        moneyProvided = moneyProvided.add(feedMoney);
-    }
+    public void addMoney(BigDecimal feedMoney){moneyProvided = moneyProvided.add(feedMoney);}
 
-    public BigDecimal getMoneyProvided() {
-        return moneyProvided;
-    }
+    public BigDecimal getMoneyProvided() {return moneyProvided;}
 
-    public int getNumberOfItemsPurchased() {
-        return numberOfItemsPurchased;
-    }
+    public int getNumberOfItemsPurchased() {return numberOfItemsPurchased;}
 
     public BigDecimal getTotalPrice(){
         BigDecimal sum = BigDecimal.valueOf(0);
@@ -36,6 +29,7 @@ public class Customer {
         }
         return sum;
     }
+
     public BigDecimal getRemainingMoney(){
         BigDecimal discount = BigDecimal.valueOf(0);
         if (items.size()%2==0){
@@ -62,30 +56,27 @@ public class Customer {
         int dimes = 0;
         int nickels = 0;
 
-
         while(cents>0){
             if (cents/quarterVal>0){
                 quarters = cents/quarterVal;
                 cents = cents -(quarters*quarters);
-            } else if (cents/dimeVal>0){
+            }
+            else if (cents/dimeVal>0){
                 dimes = cents/dimeVal;
                 cents = cents - (dimes*dimeVal);
-            }else if (cents/nickelVal>0) {
+            }
+            else if (cents/nickelVal>0) {
                 nickels = cents / nickelVal;
                 cents = cents - (nickels * nickelVal);
             }
-
         }
 
-
-        return "Your change is: " + dollars + " dollars, " + quarters + " quarters, " + dimes + " dimes, " +
+        return "Your change is: " + dollars + " dollars, " + quarters + " quarters, " + dimes + " dimes, and " +
                 nickels + " nickels";
-
     }
 
     public void addItem(Purchasable item){
         items.add(item);
         itemPrice = item.getPrice();
-
     }
 }
