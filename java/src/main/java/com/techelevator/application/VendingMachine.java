@@ -60,9 +60,9 @@ public class VendingMachine
 
                         BigDecimal moneyFed = UserInput.getFeedingMoney();
                         customer.addMoney(moneyFed);
-                        System.out.println("\nCurrent Money Provided: $" + customer.getMoneyProvided() + "\n"); //added spacing
+                        System.out.println("\nCurrent Money Provided: $" + customer.getBalance() + "\n"); //added spacing
                         purchaseMenuChoice = UserInput.getPurchaseMenuOption();
-                        logger.log("MONEY FED:", moneyFed, customer.getMoneyProvided()); //added : after MONEY FED, to match readMe
+                        logger.log("MONEY FED:", "",moneyFed, customer.getBalance()); //added : after MONEY FED, to match readMe
                     }
                     else if (purchaseMenuChoice.equals("select")) {
                         for (Map.Entry<String, Purchasable> entry : inventory.entrySet()){
@@ -72,11 +72,16 @@ public class VendingMachine
                         String itemSelected = UserInput.getSelection();
 
                         if (inventory.containsKey(itemSelected)&& inventory.get(itemSelected).getNumberInStock()>0){
+
                             inventory.get(itemSelected).purchased();
+                            BigDecimal preTransaction = customer.getBalance();
                             customer.addItem(inventory.get(itemSelected));
                             System.out.println("\nName: " + inventory.get(itemSelected).getName() + ", Price: $" +
-                                    inventory.get(itemSelected).getPrice() + " Money Remaining: $"+ customer.getRemainingMoney()+
+                                    inventory.get(itemSelected).getPrice() + " Money Remaining: $"+ customer.getBalance()+
                                     "\n " + inventory.get(itemSelected).getMessage()+ "\n");
+                            logger.log(inventory.get(itemSelected).getName(), itemSelected,
+                                    preTransaction, customer.getBalance());
+
                             purchaseMenuChoice = UserInput.getPurchaseMenuOption();
 
 
@@ -91,7 +96,9 @@ public class VendingMachine
                         }
                     }
                     else if (purchaseMenuChoice.equals("finish")) {
-                        System.out.println(customer.getChange());
+                        System.out.println(customer.getChangeString());
+                        logger.log("CHANGE GIVEN:","", customer.getChange(), customer.getBalance());
+
                         break;
                     }
                 }

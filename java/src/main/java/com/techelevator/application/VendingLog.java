@@ -13,13 +13,13 @@ import java.time.format.DateTimeFormatter;
 
 public class VendingLog {
 
-    public void log(String action, BigDecimal available, BigDecimal remaining){
+    public void log(String message, String slotValue, BigDecimal available, BigDecimal remaining){
 
         File vendingLog = new File ("Audit.txt");
 
         try (PrintWriter append = new PrintWriter(new FileWriter(vendingLog, true))) {
            //printf("%-22s %-18d %s%f")
-            append.printf("%-15s %-15s %-15s %s\n",timeString(), action,
+            append.printf("%-15s %-15s %-15s %-15s %s\n",timeString(), message, slotValue,
                     NumberFormat.getCurrencyInstance().format(available),
                     NumberFormat.getCurrencyInstance().format(remaining));
         }catch (IOException e){
