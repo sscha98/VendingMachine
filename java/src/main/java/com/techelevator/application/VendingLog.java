@@ -18,8 +18,7 @@ public class VendingLog {
         File vendingLog = new File ("Audit.txt");
 
         try (PrintWriter append = new PrintWriter(new FileWriter(vendingLog, true))) {
-           //printf("%-22s %-18d %s%f")
-            append.printf("%-25s %-18s %-13s %-15s %s\n",timeString(), message, slotValue,
+            append.printf("%-25s %-18s %-13s %-15s %s%n",timeString(), message, slotValue,
                     NumberFormat.getCurrencyInstance().format(available),
                     NumberFormat.getCurrencyInstance().format(remaining));
         }catch (IOException e){
@@ -28,7 +27,6 @@ public class VendingLog {
     }
     public static String timeString(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy h:mm:ss a");
-        //LocalDateTime time = LocalDateTime.parse(now,formatter);
         return LocalDateTime.now().format(formatter);
     }
 }

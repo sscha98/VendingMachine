@@ -18,12 +18,13 @@ public class Customer {
 //    private int numberOfItemsPurchased; //utilize to calc bogodo discount
 
     private BigDecimal change = new BigDecimal(0);
-    public Customer() {
 
-    }
+    public Customer() {}
+
     public void zeroBalance(){
         balance = new BigDecimal(0);
     }
+
     public BigDecimal getChange(){
         return change;
     }
@@ -82,7 +83,6 @@ public class Customer {
             } else if (cents / NICKEL_VAL > 0) {
                 nickels = cents / NICKEL_VAL;
                 cents = cents - (nickels * NICKEL_VAL);
-
             }
         }
         change = balance;
@@ -90,19 +90,15 @@ public class Customer {
 
         return "Your change is: " + dollars + " dollars, " + quarters + " quarters, " + dimes + " dimes, and " +
                 nickels + " nickels. You saved: " + NumberFormat.getCurrencyInstance().format(amountSaved);
-
     }
-
-        public void addItem(Purchasable item){
-            items.add(item);
-
-            BigDecimal discount = new BigDecimal(0);
-            if (items.size() % 2 == 0) {
-                discount = BigDecimal.valueOf(1);
-                amountSaved = amountSaved.add(BigDecimal.valueOf(1));
-            }
-            balance = (balance.subtract(item.getPrice())).add(discount);
-
+    public void addItem(Purchasable item){
+        items.add(item);
+        BigDecimal discount = new BigDecimal(0);
+        if (items.size() % 2 == 0) {
+            discount = BigDecimal.valueOf(1);
+            amountSaved = amountSaved.add(BigDecimal.valueOf(1));
         }
+        balance = (balance.subtract(item.getPrice())).add(discount);
     }
+}
 

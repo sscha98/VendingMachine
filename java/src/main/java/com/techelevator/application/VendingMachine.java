@@ -55,8 +55,6 @@ public class VendingMachine {
             if (choice.equals("display")) {
                 // display the vending machine slots
                 for (Map.Entry<String, Purchasable> entry : inventory.entrySet()) {
-
-
                     System.out.printf("%-5s %-15s $%.2f     Number in Stock:%d \n" ,
                             entry.getKey(),
                             entry.getValue().getName(), entry.getValue().getPrice(),
@@ -78,16 +76,18 @@ public class VendingMachine {
                     }
                     if (purchaseMenuChoice.equals("feed")) {
 
-                        BigDecimal moneyFed = UserInput.getFeedingMoney();
-                        try{
-                            if (!(moneyFed.compareTo(new BigDecimal(1))==0 ||
-                                    moneyFed.compareTo(new BigDecimal(5))==0 ||
-                                    moneyFed.compareTo(new BigDecimal(10))==0 ||
-                                    moneyFed.compareTo(new BigDecimal(20))==0)){
+                        BigDecimal moneyFed;
+                        try {
+                            moneyFed = UserInput.getFeedingMoney();
+                            if (!(moneyFed.compareTo(new BigDecimal(1)) == 0 ||
+                                    moneyFed.compareTo(new BigDecimal(5)) == 0 ||
+                                    moneyFed.compareTo(new BigDecimal(10)) == 0 ||
+                                    moneyFed.compareTo(new BigDecimal(20)) == 0)) {
                                 throw new WholeDollarException("\nPlease feed whole dollars one at a time!\n");
                             }
-
-
+                        }catch (NumberFormatException e) {
+                            System.out.println("\nYou must enter whole dollars in number format\n");
+                            continue;
                         }catch (WholeDollarException e){
                             System.out.println(e.getMessage());
                             continue;
@@ -112,7 +112,6 @@ public class VendingMachine {
                                     entry.getKey(),
                                     entry.getValue().getName(), entry.getValue().getPrice(),
                                     entry.getValue().getNumberInStock());
-
                         }
                         String itemSelected = UserInput.getSelection();
 
@@ -130,15 +129,12 @@ public class VendingMachine {
                             customer.addItem(inventory.get(itemSelected));
                             System.out.println("\nName: " + inventory.get(itemSelected).getName() + ", Price: $" +
                                     inventory.get(itemSelected).getPrice() + " Money Remaining: $"
-                                    + customer.getBalance() + "\n " + inventory.get(itemSelected).getMessage() + "\n");
-
+                                    + customer.getBalance());
+                            UserOutput.displayMessage(inventory.get(itemSelected).getMessage());
 
 
                             logger.log(inventory.get(itemSelected).getName(), itemSelected,
                                     preTransaction, customer.getBalance());
-
-
-
 
                         } else if (inventory.containsKey(itemSelected)
                                 && inventory.get(itemSelected).getNumberInStock() == 0) {
@@ -156,7 +152,7 @@ public class VendingMachine {
                     }
                 }
             } else if (choice.equals("exit")) {
-                // goodbye
+                UserOutput.goodBye();
                 break;
             }
         }

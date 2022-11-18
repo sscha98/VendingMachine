@@ -10,18 +10,15 @@ import java.util.Map;
  * 
  * Dependencies: None
  */
-public class UserOutput
-{
+public class UserOutput {
 
-    public static void displayMessage(String message)
-    {
+    public static void displayMessage(String message){
         System.out.println();
         System.out.println(message);
         System.out.println();
     }
 
-    public static void displayHomeScreen()
-    {
+    public static void displayHomeScreen(){
         System.out.println();
         System.out.println("***************************************************");
         System.out.println("                      Home");
@@ -30,5 +27,11 @@ public class UserOutput
         System.out.println("Thanksgiving Sale! Every 2nd item purchased is $1 off!");
         System.out.println();
     }
-
+    public static void goodBye(){
+        System.out.println();
+        System.out.println("***************************************************");
+        System.out.println("                    GoodBye!");
+        System.out.println("***************************************************");
+        System.out.println();
+    }
 }
