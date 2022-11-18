@@ -3,6 +3,7 @@ package com.techelevator.models;
 import java.math.BigDecimal;
 
 public class Drink implements Purchasable{
+    //variables for the Drink class
     private String name;
     private String slot;
     private BigDecimal price;

@@ -3,6 +3,7 @@ package com.techelevator.models;
 import java.math.BigDecimal;
 
 public class Gum implements Purchasable{
+    //variables for the Gum class
     private String name;
     private String slot;
     private BigDecimal price;
