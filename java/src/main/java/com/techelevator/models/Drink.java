@@ -30,11 +30,12 @@ public class Drink implements Purchasable{
         return numberInStock;
     }
 
+    //when purchase is called, the number in stock subtracts by 1
     @Override
     public void purchased() {
         numberInStock-=1;
     }
-
+    //String message pertaining to the item category
     @Override
     public String getMessage() {
         return "Drinky, Drinky, Slurp Slurp!";

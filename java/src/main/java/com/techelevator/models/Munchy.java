@@ -3,10 +3,12 @@ package com.techelevator.models;
 import java.math.BigDecimal;
 
 public class Munchy implements Purchasable{
+    //variables for the Munchy class
     private String name;
     private String slot;
     private BigDecimal price;
     private int numberInStock=6;
+
     public Munchy(String slot, String name, BigDecimal price){
         this.name = name;
         this.slot = slot;
@@ -29,11 +31,12 @@ public class Munchy implements Purchasable{
         return numberInStock;
     }
 
+    //when purchase is called, the number in stock subtracts by 1
     @Override
     public void purchased() {
         numberInStock-=1;
     }
-
+    //String message pertaining to the item category
     @Override
     public String getMessage() {
         return "Munchy, Munchy, so Good!";
