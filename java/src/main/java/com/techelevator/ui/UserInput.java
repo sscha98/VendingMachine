@@ -74,7 +74,7 @@ public class UserInput{
     }
 
     public static BigDecimal getFeedingMoney(){
-        System.out.print("Amount of Money you want to Feed in (Whole bills - $1, $5, $10, or $20. No change Accepted):  "); //limit user to only entering 1, 5, 10, or 20?
+        System.out.print("Amount of Money you want to Feed in (Whole bills - $1, $5, $10, or $20. No change Accepted): "); //limit user to only entering 1, 5, 10, or 20?
         int selectedOption = Integer.parseInt(scanner.nextLine());
 
         return BigDecimal.valueOf(selectedOption);
