@@ -19,7 +19,7 @@ public class VendingLog {
 
         try (PrintWriter append = new PrintWriter(new FileWriter(vendingLog, true))) {
            //printf("%-22s %-18d %s%f")
-            append.printf("%-15s %-15s %-15s %-15s %s\n",timeString(), message, slotValue,
+            append.printf("%-25s %-18s %-13s %-15s %s\n",timeString(), message, slotValue,
                     NumberFormat.getCurrencyInstance().format(available),
                     NumberFormat.getCurrencyInstance().format(remaining));
         }catch (IOException e){

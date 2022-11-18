@@ -47,7 +47,7 @@ public class VendingMachine
             if(choice.equals("display")) {
                 // display the vending machine slots
                 for (Map.Entry<String, Purchasable> entry : inventory.entrySet()){
-                    System.out.println(entry.getKey() + " " + entry.getValue().getName() + " " + entry.getValue().getPrice() + " " + "Number in stock: " + entry.getValue().getNumberInStock());
+                    System.out.println(entry.getKey() + "  " + entry.getValue().getName() + "  $" + entry.getValue().getPrice() + "  " + "Number in stock:" + entry.getValue().getNumberInStock());
                 }
             }
 
@@ -60,9 +60,9 @@ public class VendingMachine
 
                         BigDecimal moneyFed = UserInput.getFeedingMoney();
                         customer.addMoney(moneyFed);
-                        System.out.println("\nCurrent Money Provided: $" + customer.getBalance() + "\n"); //added spacing
+                        System.out.println("\nCurrent Money Provided: $" + customer.getBalance() + "\n");
                         purchaseMenuChoice = UserInput.getPurchaseMenuOption();
-                        logger.log("MONEY FED:", "",moneyFed, customer.getBalance()); //added : after MONEY FED, to match readMe
+                        logger.log("MONEY FED:", "",moneyFed, customer.getBalance());
                     }
                     else if (purchaseMenuChoice.equals("select")) {
                         for (Map.Entry<String, Purchasable> entry : inventory.entrySet()){

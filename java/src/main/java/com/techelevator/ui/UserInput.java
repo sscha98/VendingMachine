@@ -73,7 +73,7 @@ public class UserInput{
     }
 
     public static String getSelection(){
-        System.out.print("\nPlease type in your selection: ");//added spacing
+        System.out.print("\nPlease type in your selection: ");
         String selectedOption  = scanner.nextLine();
         String option = selectedOption.trim().toUpperCase(); //item selection can be lowercase (ex. a3, d1, c2)
         return option;
