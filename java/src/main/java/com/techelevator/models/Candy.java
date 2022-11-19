@@ -41,5 +41,4 @@ public class Candy implements Purchasable{
     public String getMessage() {
         return "Sugar, Sugar, so Sweet!";
     }
-
 }

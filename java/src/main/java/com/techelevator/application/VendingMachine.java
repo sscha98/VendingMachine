@@ -18,7 +18,7 @@ public class VendingMachine {
         //initializes a map of inventory with String keys and Purchasable values
         Map<String, Purchasable> inventory = new HashMap<>();
 
-        //while true loop will continue to run until a break is called
+        //while true, loop will continue to run until a break is called
         while (true) {
 
             //declares a file with a path that is inputted from the getInventoryFile method of UserInput
@@ -58,7 +58,6 @@ public class VendingMachine {
                 break;
             } catch (FileNotFoundException e) {}
         }
-
         while(true){
             // displays the Home screen output from UserOutput
             UserOutput.displayHomeScreen();
@@ -82,7 +81,7 @@ public class VendingMachine {
                 // display the vending machine slots
                 // for each loop goes through elements of the item map and prints out relative information
                 for (Map.Entry<String, Purchasable> entry : inventory.entrySet()) {
-                    System.out.printf("%-5s %-15s $%.2f     Number in Stock:%d \n" ,
+                    System.out.printf("%-5s %-15s  $%.2f     # in Stock: %d \n" ,
                             entry.getKey(),
                             entry.getValue().getName(), entry.getValue().getPrice(),
                             entry.getValue().getNumberInStock());
@@ -158,7 +157,7 @@ public class VendingMachine {
                         //when the "s" is inputted and there is at least some funds in the vending machine
                         // the vending machine will output the item map to display the slot value, name, price, and stock
                         for (Map.Entry<String, Purchasable> entry : inventory.entrySet()) {
-                            System.out.printf("%-5s %-15s  $%.2f     Number in Stock:%d \n" ,
+                            System.out.printf("%-5s %-15s  $%.2f     # in Stock: %d \n" ,
                                     entry.getKey(),
                                     entry.getValue().getName(), entry.getValue().getPrice(),
                                     entry.getValue().getNumberInStock());
@@ -202,20 +201,16 @@ public class VendingMachine {
                         } else if (inventory.containsKey(itemSelected)
                                 && inventory.get(itemSelected).getNumberInStock() == 0) {
                             //checks to see whether the item is in stock
-                            System.out.println("NO LONGER AVAILABLE");
-
+                            System.out.println("\nNO LONGER AVAILABLE\n");
                         } else {
                             //prints when an Invalid item is selected
                             System.out.println("\nInvalid Item\n");
-
                         }
-
                     } else if (purchaseMenuChoice.equals("finish")) {
                         //runs the getChangeString() method in the Customer Class and prints the relevant info
                         System.out.println(customer.getChangeString());
                         //logs that the change was given, the prior balance (change), and the new balance (0)
                         logger.log("CHANGE GIVEN:", "", customer.getChange(), customer.getBalance());
-
                         break;
                     }
                 }
