@@ -81,7 +81,7 @@ public class VendingMachine {
                 // display the vending machine slots
                 // for each loop goes through elements of the item map and prints out relative information
                 for (Map.Entry<String, Purchasable> entry : inventory.entrySet()) {
-                    System.out.printf("%-5s %-15s  $%.2f     # in Stock: %d \n" ,
+                    System.out.printf("%-5s %-15s  $%.2f     In Stock: %d \n" ,
                             entry.getKey(),
                             entry.getValue().getName(), entry.getValue().getPrice(),
                             entry.getValue().getNumberInStock());
@@ -157,7 +157,7 @@ public class VendingMachine {
                         //when the "s" is inputted and there is at least some funds in the vending machine
                         // the vending machine will output the item map to display the slot value, name, price, and stock
                         for (Map.Entry<String, Purchasable> entry : inventory.entrySet()) {
-                            System.out.printf("%-5s %-15s  $%.2f     # in Stock: %d \n" ,
+                            System.out.printf("%-5s %-15s  $%.2f     In Stock: %d \n" ,
                                     entry.getKey(),
                                     entry.getValue().getName(), entry.getValue().getPrice(),
                                     entry.getValue().getNumberInStock());
