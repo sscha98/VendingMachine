@@ -1,5 +1,7 @@
 package com.techelevator.models;
 
+import com.techelevator.ui.UserOutput;
+
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -82,8 +84,9 @@ public class Customer {
 
         //returns the string of the number of dollars, quarters, dimes, and nickels with the least amount of coins
         //possible
-        return "Your change is: " + dollars + " dollars, " + quarters + " quarters, " + dimes + " dimes, and " +
-                nickels + " nickels. You saved: " + NumberFormat.getCurrencyInstance().format(amountSaved);
+//        return "Your change is: " + dollars + " dollars, " + quarters + " quarters, " + dimes + " dimes, and " +
+//                nickels + " nickels. You saved: " + NumberFormat.getCurrencyInstance().format(amountSaved);
+        return UserOutput.changeGivenDisplay(dollars, quarters, dimes, nickels, amountSaved);
     }
     //addItem adds the Purchasable item passed through
     //discount is then checked by modulo (every even item purchased is discounted)

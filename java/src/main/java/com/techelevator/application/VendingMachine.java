@@ -27,7 +27,7 @@ public class VendingMachine {
             //Checks if the file exists, and if not, the code loops back over the previous line for the user to input
             //a valid path
             if (!inventoryFile.exists()) {
-                System.out.println("That File was not found. Please enter a valid inventory File.");
+                UserOutput.fileNotFoundDisplay();
                 continue;
             }
 
@@ -73,7 +73,7 @@ public class VendingMachine {
             }catch (IllegalArgumentException e){
                 //catches the IllegalArgumentException and prompts the user to input a valid option, and loops back
                 //over to the home menu
-                System.out.println("\nPlease input valid menu option!\n");
+                UserOutput.invalidOptionDisplay();
                 continue;
             }
             //if the selection was D, the if code block runs
@@ -81,7 +81,7 @@ public class VendingMachine {
                 // display the vending machine slots
                 // for each loop goes through elements of the item map and prints out relative information
                 for (Map.Entry<String, Purchasable> entry : inventory.entrySet()) {
-                    System.out.printf("%-5s %-15s  $%.2f     In Stock: %d \n" ,
+                    System.out.printf(UserOutput.inventoryFormatting() ,
                             entry.getKey(),
                             entry.getValue().getName(), entry.getValue().getPrice(),
                             entry.getValue().getNumberInStock());
@@ -105,7 +105,8 @@ public class VendingMachine {
                     }catch (IllegalArgumentException e){
                         //prompts the user to make input a valid option
                         //continue will then loop back around to the purchase menu
-                        System.out.println("\nPlease input valid menu option!\n");
+                        //System.out.println("\nPlease input valid menu option!\n");
+                        UserOutput.invalidOptionDisplay();
                         continue;
                     }
                     //if feed is selected ("m"), the code will run
@@ -138,8 +139,7 @@ public class VendingMachine {
                         //of the Customer class
                         customer.addMoney(moneyFed);
                         //prints relevant information regarding the current balance in the vending machine
-                        System.out.println("\nCurrent Money Provided: " +
-                                NumberFormat.getCurrencyInstance().format(customer.getBalance()) + "\n");
+                        UserOutput.currentMoneyProvidedDisplay(customer.getBalance());
                         //log() of the VendingLog Class appends this message to the Audit.txt to indicate
                         //Money had been fed into the machine
                         logger.log("MONEY FED:", "", moneyFed, customer.getBalance());
@@ -157,7 +157,7 @@ public class VendingMachine {
                         //when the "s" is inputted and there is at least some funds in the vending machine
                         // the vending machine will output the item map to display the slot value, name, price, and stock
                         for (Map.Entry<String, Purchasable> entry : inventory.entrySet()) {
-                            System.out.printf("%-5s %-15s  $%.2f     In Stock: %d \n" ,
+                            System.out.printf(UserOutput.inventoryFormatting() ,
                                     entry.getKey(),
                                     entry.getValue().getName(), entry.getValue().getPrice(),
                                     entry.getValue().getNumberInStock());
@@ -189,9 +189,8 @@ public class VendingMachine {
                             //discount of not
                             customer.addItem(inventory.get(itemSelected));
                             //prints out the name and price of the item selected and the customer's balance
-                            System.out.println("\nName: " + inventory.get(itemSelected).getName() + ", Price: $" +
-                                    inventory.get(itemSelected).getPrice() + " Money Remaining: $"
-                                    + customer.getBalance());
+                            UserOutput.userSelectionDisplay(inventory.get(itemSelected).getName(),
+                                    inventory.get(itemSelected).getPrice(), customer.getBalance());
                             //displays the relevant message for the item category
                             UserOutput.displayMessage(inventory.get(itemSelected).getMessage());
                             //logs the item selection, prior balance, and new balance
@@ -201,10 +200,10 @@ public class VendingMachine {
                         } else if (inventory.containsKey(itemSelected)
                                 && inventory.get(itemSelected).getNumberInStock() == 0) {
                             //checks to see whether the item is in stock
-                            System.out.println("\nNO LONGER AVAILABLE\n");
+                            UserOutput.noLongerAvailable();
                         } else {
                             //prints when an Invalid item is selected
-                            System.out.println("\nInvalid Item\n");
+                            UserOutput.invalidItem();
                         }
                     } else if (purchaseMenuChoice.equals("finish")) {
                         //runs the getChangeString() method in the Customer Class and prints the relevant info
