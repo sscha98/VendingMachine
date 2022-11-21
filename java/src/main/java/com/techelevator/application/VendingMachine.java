@@ -88,7 +88,7 @@ public class VendingMachine {
                 }
             } else if (choice.equals("purchase")) {
                 //when the selection is P
-                //this indicates a new customer is ready for purchase and creates a new instane of Customer
+                //this indicates a new customer is ready for purchase and creates a new instance of Customer
                 Customer customer = new Customer();
                 //while loop will continue to run until break is called
                 while (true) {
