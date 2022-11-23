@@ -49,6 +49,7 @@ public class Customer {
         //moneyProvidedCents is the balance converted to cents
         BigDecimal moneyProvidedCents = balance.multiply(new BigDecimal(100));
         //cents is the customer balance with the dollar amounts subtracted
+        //in order to determine the change required after removing whole dollars
         int cents = moneyProvidedCents.intValue() - 100 * dollars;
 
         //constants of the coin values
@@ -64,7 +65,7 @@ public class Customer {
         //while loop continues until cents = 0
         while (cents > 0) {
             //if the cents divided by coin value is greater than 0
-            //the coin count will store the amount of time the coin can be divided from cents
+            //the coin count will store the amount of times the coin can be divided from cents
             // then cents is then reassigned to be cents minus the coin count time the coin value
             if (cents/QUARTER_VAL > 0) {
                 quarters = cents/QUARTER_VAL;

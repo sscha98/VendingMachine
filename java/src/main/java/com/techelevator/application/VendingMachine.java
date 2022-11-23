@@ -43,6 +43,7 @@ public class VendingMachine {
                     String name = item[0];
 
                     //code determines which item belongs to which class and
+                    //by checking the respective index in the newly split line holding the snack category
                     //  creates new instances of each respective class
                     if (item[3].equals("Munchy")) {
                         inventory.put(name, new Munchy(item[0], item[1], new BigDecimal(item[2])));
