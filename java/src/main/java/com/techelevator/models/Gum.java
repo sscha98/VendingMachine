@@ -2,41 +2,13 @@ package com.techelevator.models;
 
 import java.math.BigDecimal;
 
-public class Gum implements Purchasable{
-    //variables for the Gum class
-    private String name;
-    private String slot;
-    private BigDecimal price;
-    private int numberInStock = 6;
+public class Gum extends Purchasable {
 
     public Gum(String slot, String name, BigDecimal price) {
-        this.name = name;
-        this.slot = slot;
-        this.price = price;
+        super(slot, name, price);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getSlot() {
-        return slot;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public int getNumberInStock() {
-        return numberInStock;
-    }
-
-    //when purchase is called, the number in stock subtracts by 1
-    @Override
-    public void purchased() {
-        numberInStock-=1;
-    }
-    //String message pertaining to the item category
+    //String message pertaining to the Gum category
     @Override
     public String getMessage() {
         return "Chewy, Chewy, Lots O Bubbles!";

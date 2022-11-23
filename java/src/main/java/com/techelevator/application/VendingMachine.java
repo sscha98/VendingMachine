@@ -148,7 +148,7 @@ public class VendingMachine {
                         //vending machine. if not, the custom exception  InsufficientFundsException is thrown.
                         try{
                             if (customer.getBalance().compareTo(new BigDecimal(0))==0){
-                                throw new InsufficientFundsException("\nInsufficient Funds! Please feed money!\n");
+                                throw new InsufficientFundsException("Insufficient Funds! Please feed money!\n");
                             }
                         }catch(InsufficientFundsException e){
                             System.out.println(e.getMessage());
